@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [Header(" Elemnts ")]
+    [SerializeField] CrowdSystem crowdSystem;
+
     [Header(" Settins ")]
     [SerializeField] float moveSpeed = 1f;
 
