@@ -6,27 +6,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [Header(" Elemnts ")]
+    [Header(" Elements ")]
     [SerializeField] CrowdSystem crowdSystem;
 
-    [Header(" Settins ")]
+    [Header(" Settings ")]
     [SerializeField] float moveSpeed = 1f;
+    [SerializeField] float roadWidth = 10f;
 
     [Header(" Control ")]
     [SerializeField] float slideSpeed;
     private Vector3 clickedScreenPosition;
     private Vector3 clickedPlayerPosition;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
     {
         MoveForward();
+
         ManageControl();
+    }
+
+    private void MoveForward()
+    {
+        transform.position += Vector3.forward * Time.deltaTime * moveSpeed;
     }
 
     private void ManageControl()
@@ -45,14 +47,13 @@ public class PlayerController : MonoBehaviour
 
             Vector3 position = transform.position;
             position.x = clickedPlayerPosition.x + xScreenDifference;
+
+            position.x = Mathf.Clamp(position.x, -roadWidth / 2 + crowdSystem.GetCrowdRadious(),
+                roadWidth / 2 - crowdSystem.GetCrowdRadious());
+
             transform.position = position;
 
             //transform.position = clickedPlayerPosition + Vector3.right * xScreenDifference;
         }
-    }
-
-    private void MoveForward()
-    {
-        transform.position += Vector3.forward * Time.deltaTime * moveSpeed;
     }
 }
