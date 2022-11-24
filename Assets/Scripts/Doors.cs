@@ -4,15 +4,17 @@ using UnityEngine;
 using TMPro;
 using System;
 
+public enum BonusType { Addition, Difference, Product, Division }
+
 public class Doors : MonoBehaviour
 {
-    enum BonusType { Addition, Difference, Product, Division }
 
     [Header(" Elements ")]
     [SerializeField] SpriteRenderer rightDoorRenderer;
     [SerializeField] SpriteRenderer leftDoorRenderer;
     [SerializeField] TextMeshPro rightDoorText;
     [SerializeField] TextMeshPro leftDoorText;
+    [SerializeField] Collider collider;
 
     [Header(" Settings ")]
     [SerializeField] BonusType rightDoorBonusType;
@@ -37,10 +39,7 @@ public class Doors : MonoBehaviour
 
     private void ConfigureDoors()
     {
-        //configure the right door
-
-
-        switch(rightDoorBonusType)
+        switch (rightDoorBonusType)
         {
             case BonusType.Addition:
                 rightDoorRenderer.color = bonusColor;
@@ -65,7 +64,7 @@ public class Doors : MonoBehaviour
                 break;
         }
 
-        switch(leftDoorBonusType)
+        switch (leftDoorBonusType)
         {
             case BonusType.Addition:
                 leftDoorRenderer.color = bonusColor;
@@ -88,7 +87,29 @@ public class Doors : MonoBehaviour
                 break;
             default:
                 break;
-        }        
+        }
+    }
+
+
+    public int GetBonusAmount(float xPosition)
+    {
+        if (xPosition > 0)
+            return rigthDoorBonusAmount;
+        else
+            return leftDoorBonusAmount;
+    }
+
+    public BonusType GetBonusType(float xPosition)
+    {
+        if (xPosition > 0)
+            return rightDoorBonusType;
+        else
+            return leftDoorBonusType;
+    }
+
+    public void Disable()
+    {
+        collider.enabled = false;
     }
 
 }

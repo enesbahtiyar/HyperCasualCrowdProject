@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class PlayerDetection : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header(" Elements ")]
+    [SerializeField] CrowdSystem crowdSystem;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        DetectDoors();
     }
+
+    private void DetectDoors()
+    {
+        Collider[] detectedColliders = Physics.OverlapSphere(transform.position, 1);
+
+        for(int i = 0; i < detectedColliders.Length; i++)
+        {
+            if (detectedColliders[i].TryGetComponent(out Doors doors))
+            {
+                Debug.Log("we hit some doors");
+
+                int bonusAmount = doors.GetBonusAmount(transform.position.x);
+                BonusType bonusType = doors.GetBonusType(transform.position.x);
+
+                doors.Disable();
+
+                crowdSystem.ApplyBonus(bonusType, bonusAmount);
+            }
+        }
+    }
+
+    
 }
