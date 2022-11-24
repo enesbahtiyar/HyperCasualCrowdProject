@@ -1266,7 +1266,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788567953}
-  m_LocalRotation: {x: 0.29353178, y: -1e-45, z: -0, w: 0.9559493}
+  m_LocalRotation: {x: 0.29353178, y: 3e-45, z: -1e-45, w: 0.9559493}
   m_LocalPosition: {x: 2.942695, y: 19.445168, z: -25.243105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1452,7 +1452,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.29353178, y: -1e-45, z: -0, w: 0.9559493}
+  m_LocalRotation: {x: 0.29353178, y: 3e-45, z: -1e-45, w: 0.9559493}
   m_LocalPosition: {x: 2.942695, y: 19.445168, z: -25.243105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2167,7 +2167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd3fee60178b734095eb1ba5e3d370b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crowdSystem: {fileID: 0}
+  crowdSystem: {fileID: 4147758403346517934}
   moveSpeed: 1
   roadWidth: 10
   slideSpeed: 3
