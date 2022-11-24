@@ -8,22 +8,55 @@ public class PlayerController : MonoBehaviour
 
     [Header(" Elements ")]
     [SerializeField] CrowdSystem crowdSystem;
+    [SerializeField] PlayerAnimator playerAnimator;
 
     [Header(" Settings ")]
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] float roadWidth = 10f;
+    bool canMove = false;
+
 
     [Header(" Control ")]
     [SerializeField] float slideSpeed;
     private Vector3 clickedScreenPosition;
     private Vector3 clickedPlayerPosition;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        GameManager.onGameStateChanged += GameStateChangedCallback;
+    }
+
+
     void Update()
     {
-        MoveForward();
+        if (canMove)
+        {
+            MoveForward();
 
-        ManageControl();
+            ManageControl();
+        }
+    }
+
+    private void GameStateChangedCallback(GameManager.GameState gameState)
+    {
+        if(gameState == GameManager.GameState.Game)
+        {
+            StartMoving();
+        }
+    }
+
+    private void StartMoving()
+    {
+        canMove = true;
+
+        playerAnimator.Run();
+    }
+
+    private void StopMoving()
+    {
+        canMove = false;
+
+        playerAnimator.Idle();
     }
 
     private void MoveForward()
