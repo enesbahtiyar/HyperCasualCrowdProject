@@ -7,16 +7,12 @@ public class CrowdSystem : MonoBehaviour
     [Header(" Elements ")]
     [SerializeField] Transform runnersParent;
     [SerializeField] GameObject runnerPrefab;
+    [SerializeField] PlayerAnimator playerAnimator;
 
     [Header(" Settings ")]
     [SerializeField] float radius;
     [SerializeField] float goldenAngle;
 
-    Animator runnerAnimator;
-    private void Awake()
-    {
-        runnerAnimator = GetComponent<Animator>();
-    }
     void Update()
     {
         PlaceRunners();
@@ -74,6 +70,8 @@ public class CrowdSystem : MonoBehaviour
         {
             Instantiate(runnerPrefab, runnersParent);
         }
+
+        playerAnimator.Run();
     }
 
     private void RemoveRunnners(int amount)

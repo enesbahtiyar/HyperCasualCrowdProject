@@ -10,7 +10,7 @@ public class PlayerDetection : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -22,7 +22,7 @@ public class PlayerDetection : MonoBehaviour
     {
         Collider[] detectedColliders = Physics.OverlapSphere(transform.position, 1);
 
-        for(int i = 0; i < detectedColliders.Length; i++)
+        for (int i = 0; i < detectedColliders.Length; i++)
         {
             if (detectedColliders[i].TryGetComponent(out Doors doors))
             {
@@ -35,11 +35,11 @@ public class PlayerDetection : MonoBehaviour
 
                 crowdSystem.ApplyBonus(bonusType, bonusAmount);
             }
-            else if(detectedColliders[i].tag == "Finish")
+            else if (detectedColliders[i].tag == "Finish")
             {
                 Debug.Log("Finish Line");
-                
-                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level", +1));
+
+                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
 
                 SceneManager.LoadScene(0);
             }
@@ -47,5 +47,5 @@ public class PlayerDetection : MonoBehaviour
         }
     }
 
-    
+
 }
