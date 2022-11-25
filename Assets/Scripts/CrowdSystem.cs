@@ -12,7 +12,11 @@ public class CrowdSystem : MonoBehaviour
     [SerializeField] float radius;
     [SerializeField] float goldenAngle;
 
-
+    Animator runnerAnimator;
+    private void Awake()
+    {
+        runnerAnimator = GetComponent<Animator>();
+    }
     void Update()
     {
         PlaceRunners();
@@ -67,7 +71,9 @@ public class CrowdSystem : MonoBehaviour
     private void AddRunners(int amount)
     {
         for (int i = 0; i < amount; i++)
+        {
             Instantiate(runnerPrefab, runnersParent);
+        }
     }
 
     private void RemoveRunnners(int amount)

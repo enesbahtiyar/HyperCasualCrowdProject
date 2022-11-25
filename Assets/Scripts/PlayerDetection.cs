@@ -38,6 +38,9 @@ public class PlayerDetection : MonoBehaviour
             else if(detectedColliders[i].tag == "Finish")
             {
                 Debug.Log("Finish Line");
+                
+                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level", +1));
+
                 SceneManager.LoadScene(0);
             }
 

@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public static PlayerController instance;
+
     [Header(" Elements ")]
     [SerializeField] CrowdSystem crowdSystem;
     [SerializeField] PlayerAnimator playerAnimator;
@@ -21,9 +23,22 @@ public class PlayerController : MonoBehaviour
     private Vector3 clickedScreenPosition;
     private Vector3 clickedPlayerPosition;
 
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(gameObject);
+        else
+            instance = this;
+    }
+
     private void Start()
     {
         GameManager.onGameStateChanged += GameStateChangedCallback;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= GameStateChangedCallback;
     }
 
 

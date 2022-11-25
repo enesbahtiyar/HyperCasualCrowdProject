@@ -27,4 +27,9 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Gamestate changed to: " + gameState);
     }
+
+    public bool IsGameState()
+    {
+        return gameState == GameState.Game;
+    }
 }
