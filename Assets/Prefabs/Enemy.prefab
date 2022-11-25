@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1afaa90622c6cfd4c91c80f06f5be80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchRadius: 5
+  searchRadius: 10
   moveSpeed: 10
 --- !u!1 &3336826249985671388
 GameObject:
