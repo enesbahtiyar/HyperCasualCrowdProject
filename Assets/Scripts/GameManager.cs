@@ -6,11 +6,16 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public enum GameState { Menu, Game, LevelComplete, GameOver}
+    public enum GameState { Menu, Game, LevelComplete, Gameover}
 
     private GameState gameState;
 
     public static Action<GameState> onGameStateChanged;
+
+    private void Start()
+    {
+        //PlayerPrefs.DeleteAll();
+    }
 
     private void Awake()
     {
