@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerDetection : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] PlayerAnimator playerAnim;
     [SerializeField] SoundsManager soundsManager;
 
+    [Header(" Events ")]
+
+    public static Action onDoorsHit;
     void Start()
     {
 
@@ -37,6 +41,8 @@ public class PlayerDetection : MonoBehaviour
                 BonusType bonusType = doors.GetBonusType(transform.position.x);
 
                 doors.Disable();
+
+                onDoorsHit.Invoke();
 
                 soundsManager.PlayDoorHitSound();
 
