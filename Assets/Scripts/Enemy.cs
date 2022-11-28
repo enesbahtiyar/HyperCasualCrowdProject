@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     State state;
     Transform targetRunner;
 
+    [Header(" Events ")]
+    public static Action onRunnnerDied;
 
     void Start()
     {
@@ -72,6 +74,8 @@ public class Enemy : MonoBehaviour
 
         if (Vector3.Distance(transform.position, targetRunner.position) < 0.1f)
         {
+            onRunnnerDied?.Invoke();
+
             Destroy(targetRunner.gameObject);
             Destroy(this.gameObject);
         }

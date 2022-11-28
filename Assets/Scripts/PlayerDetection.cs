@@ -8,6 +8,7 @@ public class PlayerDetection : MonoBehaviour
     [Header(" Elements ")]
     [SerializeField] CrowdSystem crowdSystem;
     [SerializeField] PlayerAnimator playerAnim;
+    [SerializeField] SoundsManager soundsManager;
 
     void Start()
     {
@@ -37,6 +38,8 @@ public class PlayerDetection : MonoBehaviour
 
                 doors.Disable();
 
+                soundsManager.PlayDoorHitSound();
+
                 crowdSystem.ApplyBonus(bonusType, bonusAmount);
             }
             else if (detectedColliders[i].tag == "Finish")
@@ -47,6 +50,8 @@ public class PlayerDetection : MonoBehaviour
                 PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
 
                 GameManager.instance.SetGameState(GameManager.GameState.LevelComplete);
+
+                soundsManager.PlayLevelCompleteSound();
 
                 playerAnim.Idle();
 

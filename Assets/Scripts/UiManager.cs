@@ -11,6 +11,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] GameObject gamePanel;
     [SerializeField] GameObject gameoverPanel;
     [SerializeField] GameObject levelCompletePanel;
+    [SerializeField] SoundsManager soundsManager;
     [SerializeField] Text LevelText;
     [SerializeField] Slider progressBar;
 
@@ -63,6 +64,7 @@ public class UiManager : MonoBehaviour
     {
         gamePanel.SetActive(false);
         gameoverPanel.SetActive(true);
+        soundsManager.PlayGameOverSound();
     }
 
     public void UpdateProgressBar()
