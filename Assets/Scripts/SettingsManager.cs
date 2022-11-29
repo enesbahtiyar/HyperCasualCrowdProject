@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header(" Elements ")]
+    [SerializeField] Image soundButtonImage;
+    [SerializeField] Image hapticButtonImage;
+    [SerializeField] Sprite optionOnSprite;
+    [SerializeField] Sprite optionOffSprite;
+
+    [Header(" Settings ")]
+    bool soundsState = true;
+    bool hapticState = true;
+    public void ChangeSoundsState()
     {
-        
+        if (soundsState)
+            DisableSounds();
+        else
+            EnableSounds();
+
+        soundsState = !soundsState;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DisableSounds()
     {
-        
+
+    }
+
+    private void EnableSounds()
+    {
+
     }
 }
