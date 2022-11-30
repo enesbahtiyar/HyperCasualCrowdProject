@@ -64,7 +64,6 @@ public class UiManager : MonoBehaviour
     {
         gamePanel.SetActive(false);
         gameoverPanel.SetActive(true);
-        soundsManager.PlayGameOverSound();
     }
 
     public void UpdateProgressBar()

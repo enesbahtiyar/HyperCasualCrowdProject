@@ -12,8 +12,9 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] SoundsManager soundsManager;
 
     [Header(" Events ")]
-
     public static Action onDoorsHit;
+
+
     void Start()
     {
 
@@ -42,9 +43,7 @@ public class PlayerDetection : MonoBehaviour
 
                 doors.Disable();
 
-                onDoorsHit.Invoke();
-
-                soundsManager.PlayDoorHitSound();
+                onDoorsHit?.Invoke();
 
                 crowdSystem.ApplyBonus(bonusType, bonusAmount);
             }
@@ -56,8 +55,6 @@ public class PlayerDetection : MonoBehaviour
                 PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
 
                 GameManager.instance.SetGameState(GameManager.GameState.LevelComplete);
-
-                soundsManager.PlayLevelCompleteSound();
 
                 playerAnim.Idle();
 

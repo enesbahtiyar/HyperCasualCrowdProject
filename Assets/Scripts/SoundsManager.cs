@@ -13,26 +13,28 @@ public class SoundsManager : MonoBehaviour
     private void Start()
     {
         Enemy.onRunnnerDied += PlayRunnerDieSound;
+        PlayerDetection.onDoorsHit += PlayDoorHitSound;
+        GameManager.onGameStateChanged += GameStateChangedCallback;
     }
 
     private void OnDestroy()
     {
         Enemy.onRunnnerDied -= PlayRunnerDieSound;
+        PlayerDetection.onDoorsHit -= PlayDoorHitSound;
+        GameManager.onGameStateChanged -= GameStateChangedCallback;
     }
 
-    public void PlayDoorHitSound()
+    private void PlayDoorHitSound()
     {
         doorHit.Play();
     }
 
-    public void PlayLevelCompleteSound()
+    private void GameStateChangedCallback(GameManager.GameState gameState)
     {
-        levelComplete.Play();
-    }
-
-    public void PlayGameOverSound()
-    {
-        gameOver.Play();
+        if (gameState == GameManager.GameState.Gameover)
+            gameOver.Play();
+        else if (gameState == GameManager.GameState.LevelComplete)
+            levelComplete.Play();
     }
 
     public void PlayRunnerDieSound()
