@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     [Header(" Elements ")]
+    [SerializeField] SoundsManager soundsManager;
     [SerializeField] Image soundButtonImage;
     [SerializeField] Image hapticButtonImage;
     [SerializeField] Sprite optionOnSprite;
@@ -14,6 +15,12 @@ public class SettingsManager : MonoBehaviour
     [Header(" Settings ")]
     bool soundsState = true;
     bool hapticState = true;
+
+    private void Start()
+    {
+        Setup();
+    }
+
     public void ChangeSoundsState()
     {
         if (soundsState)
@@ -22,15 +29,31 @@ public class SettingsManager : MonoBehaviour
             EnableSounds();
 
         soundsState = !soundsState;
+
+        //save the value of the sounds state
+    }
+
+    private void Setup()
+    {
+        if (soundsState)
+            EnableSounds();
+        else
+            DisableSounds();
     }
 
     private void DisableSounds()
     {
-
+        //tell the sounds manager to set the volume of all the sounds to 0 
+        soundsManager.DisableSounds();
+        //change the image of the sounds button
+        soundButtonImage.sprite = optionOffSprite;
     }
 
     private void EnableSounds()
     {
-
+        //tell the sounds manager to set the volume of all the sounds to 1
+        soundsManager.EnableSounds();
+        //change the image of the sounds button
+        soundButtonImage.sprite = optionOnSprite;
     }
 }

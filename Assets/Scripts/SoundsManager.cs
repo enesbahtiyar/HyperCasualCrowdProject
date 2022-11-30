@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundsManager : MonoBehaviour
 {
     [Header(" Sounds ")]
+    [SerializeField] AudioSource button;
     [SerializeField] AudioSource doorHit;
     [SerializeField] AudioSource levelComplete;
     [SerializeField] AudioSource gameOver;
@@ -42,5 +43,21 @@ public class SoundsManager : MonoBehaviour
         runnerDie.Play();
     }
 
-    
+    public void DisableSounds()
+    {
+        doorHit.volume = 0;
+        levelComplete.volume = 0;
+        gameOver.volume = 0;
+        runnerDie.volume = 0;
+        button.volume = 0;
+    }
+
+    public void EnableSounds()
+    {
+        doorHit.volume = 1;
+        levelComplete.volume = 1;
+        gameOver.volume = 1;
+        runnerDie.volume = 1;
+        button.volume = 1;
+    }
 }
