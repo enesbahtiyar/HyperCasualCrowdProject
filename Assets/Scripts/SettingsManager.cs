@@ -39,6 +39,11 @@ public class SettingsManager : MonoBehaviour
             EnableSounds();
         else
             DisableSounds();
+
+        if (hapticState)
+            EnableHaptics();
+        else
+            DisableHaptics();
     }
 
     private void DisableSounds()
@@ -55,5 +60,15 @@ public class SettingsManager : MonoBehaviour
         soundsManager.EnableSounds();
         //change the image of the sounds button
         soundButtonImage.sprite = optionOnSprite;
+    }
+
+    private void EnableHaptics()
+    {
+
+    }
+
+    private void DisableHaptics()
+    {
+
     }
 }
